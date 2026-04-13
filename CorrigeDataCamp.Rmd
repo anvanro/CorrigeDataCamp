@@ -27,6 +27,10 @@ cat("\n---\n\n")
 justificante = list.files("Alumnos/.", pattern = "certificate.pdf", full.names = FALSE, recursive = TRUE)
 
 
-
+# extraccion de apellidos de los alumnos
+apellidos = list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>%
+            strsplit(split = ',', fixed = TRUE) %>%
+            map_chr(1) %>%
+            unique()
 ```
 
