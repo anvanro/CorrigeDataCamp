@@ -20,10 +20,10 @@ Objetivo: Desarrollar un programa que permita realizar la corrección automátic
 
 ```{r}
 # se buscan todos los ficheros de puntuaciones
-puntos <- list.files("Alumnos/.", pattern = "puntos.txt", full.names = FALSE, recursive = TRUE)
+puntos_fichero <- list.files("Alumnos/.", pattern = "puntos.txt", full.names = FALSE, recursive = TRUE)
 
 # se buscan todos los ficheros con el justificante del curso
-justificante <- list.files("Alumnos/.", pattern = "certificate.pdf", full.names = FALSE, recursive = TRUE)
+justificante_fichero <- list.files("Alumnos/.", pattern = "certificate.pdf", full.names = FALSE, recursive = TRUE)
 
 
 # extraccion de apellidos de los alumnos
