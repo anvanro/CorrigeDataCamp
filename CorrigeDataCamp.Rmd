@@ -1,0 +1,24 @@
+---
+title: "CorrigeDataCamp"
+output: html_document
+date: "2026-04-13"
+author: "Andrea Vandirek Romero"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Carga de librerías
+library(tidyverse)
+library(lubridate)
+library(knitr)
+```
+
+**Trabajo Corrección automática de tareas de Datacamp**
+
+Objetivo: Desarrollar un programa que permita realizar la corrección automática de una tarea de Datacamp y asigne a cada alumno la puntuación obtenida. 
+
+```{r}
+
+```
+
