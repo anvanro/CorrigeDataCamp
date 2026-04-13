@@ -20,7 +20,7 @@ Objetivo: Desarrollar un programa que permita realizar la corrección automátic
 
 ```{r}
 # se buscan todos los ficheros de puntuaciones
-puntos_rutas <- list.files("Alumnos/.", pattern = "puntos.txt", full.names = FALSE, recursive = TRUE)
+puntos_rutas <- list.files("Alumnos/.", pattern = "puntos.txt", full.names = TRUE, recursive = TRUE)
 
 # se buscan todos los ficheros con el justificante del curso
 justificante_rutas <- list.files("Alumnos/.", pattern = "certificate.pdf", full.names = FALSE, recursive = TRUE)
@@ -32,6 +32,6 @@ apellidos <- list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>%
             map_chr(1) %>%
             unique()
 
-puntos <- sapply(puntos_rutas, function(x) as.numeric(readLines(x, encoding = ASCII)))
+puntos <- sapply(puntos_rutas, function(x) (readLines(x, warn = FALSE)))
 ```
 
