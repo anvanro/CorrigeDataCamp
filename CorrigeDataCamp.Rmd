@@ -32,7 +32,6 @@ apellidos <- list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>%
             map_chr(1) %>%
             unique()
 
-puntos <- readLines(con = puntos_rutas, encoding = "UTF-8") %>%
-          as.numeric()
+puntos <- sapply(puntos_rutas, function(x) as.numeric(readLines(x, encoding = ASCII)))
 ```
 
