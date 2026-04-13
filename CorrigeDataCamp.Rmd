@@ -19,6 +19,14 @@ library(knitr)
 Objetivo: Desarrollar un programa que permita realizar la corrección automática de una tarea de Datacamp y asigne a cada alumno la puntuación obtenida. 
 
 ```{r}
+# se buscan todos los ficheros de puntuaciones
+puntos = list.files("Alumnos/.", pattern = "puntos.txt", full.names = FALSE, recursive = TRUE)
+
+cat("\n---\n\n")
+# se buscan todos los ficheros con el justificante del curso
+justificante = list.files("Alumnos/.", pattern = "certificate.pdf", full.names = FALSE, recursive = TRUE)
+
+
 
 ```
 
