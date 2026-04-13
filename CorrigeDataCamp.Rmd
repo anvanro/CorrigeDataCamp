@@ -20,16 +20,18 @@ Objetivo: Desarrollar un programa que permita realizar la corrección automátic
 
 ```{r}
 # se buscan todos los ficheros de puntuaciones
-puntos = list.files("Alumnos/.", pattern = "puntos.txt", full.names = FALSE, recursive = TRUE)
+puntos <- list.files("Alumnos/.", pattern = "puntos.txt", full.names = FALSE, recursive = TRUE)
 
 # se buscan todos los ficheros con el justificante del curso
-justificante = list.files("Alumnos/.", pattern = "certificate.pdf", full.names = FALSE, recursive = TRUE)
+justificante <- list.files("Alumnos/.", pattern = "certificate.pdf", full.names = FALSE, recursive = TRUE)
 
 
 # extraccion de apellidos de los alumnos
-apellidos = list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>%
+apellidos <- list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>%
             strsplit(split = ',', fixed = TRUE) %>%
             map_chr(1) %>%
             unique()
+
+
 ```
 
