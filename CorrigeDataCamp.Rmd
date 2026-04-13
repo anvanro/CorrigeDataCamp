@@ -35,3 +35,10 @@ apellidos <- list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>%
 puntos <- sapply(puntos_rutas, function(x) (readLines(x, warn = FALSE)))
 ```
 
+#Reflexion sobre datos obtenidos
+
+¿Todas las entregas usaron como nombre del fichero de puntos el indicado; puntos.txt ?
+
+¿Cuántas variantes hay ?
+
+¿Todas las entregas contienen el fichero de puntos y el justificante de realización del curso ?
