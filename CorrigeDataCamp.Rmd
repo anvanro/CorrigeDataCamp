@@ -59,3 +59,17 @@ cat("Total de variantes de nombres de los archivos de los estudiantes:", variant
 
 
 ¿Todas las entregas contienen el fichero de puntos y el justificante de realización del curso ?
+
+
+Controlando las carpetas de cada alumno vemos si todos tienen dos archivos, sin depender del nombre especifico que le puso cada estudiante al archivo.
+```{r}
+# lista de las carpetas de los alumnos ignorando la carpeta raiz
+archivos_alumno <- list.dirs("Alumnos/.", recursive = FALSE) 
+num_archivos_alumno <- sapply( archivos_alumno, function(carpeta) {length(list.files(carpeta, recursive = TRUE))})
+
+# verificamos si todos tienen exactamente 2
+todos_tienen_dos <- all(num_archivos_alumno == 2)
+
+cat("Todas las carpetas tienen dos archivos?", ifelse(todos_tienen_dos, "SÍ", "NO"))
+```
+
