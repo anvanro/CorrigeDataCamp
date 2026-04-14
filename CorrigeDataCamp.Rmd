@@ -32,7 +32,7 @@ apellidos <- list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>%
             map_chr(1) %>%
             unique()
 
-puntos <- sapply(puntos_rutas, function(x) (readLines(x, warn = FALSE)))
+puntos <- lapply(puntos_rutas, function(x) (readLines(x, warn = FALSE)))
 ```
 
 #Reflexion sobre datos obtenidos
@@ -71,5 +71,28 @@ num_archivos_alumno <- sapply( archivos_alumno, function(carpeta) {length(list.f
 todos_tienen_dos <- all(num_archivos_alumno == 2)
 
 cat("Todas las carpetas tienen dos archivos?", ifelse(todos_tienen_dos, "SÍ", "NO"))
+```
+
+#Creacion del data frame
+
+```{r}
+# modificamos los datos guardados en puntos para valores no numericos devolver NA
+puntos_limpio <- lapply(puntos, function(x) {as.numeric(x)}) %>% unlist()
+
+# puntos como cadena de texto
+puntos_texto <- lapply(puntos, function(x) {as.character(x)}) %>% unlist()
+
+# creamos una variable para almacenar las rutas de los achivos de puntuacion donde si falta el archivo rellenamos con NA
+puntos_rutas_completo <- character(64) 
+for (i in 1:64) {
+  puntos_rutas <- list.files(archivos_alumno[i], pattern = "*.txt", full.names = TRUE)
+  if (length(puntos_rutas) > 0) {
+    puntos_rutas_completo[i] <- puntos_rutas
+  } else {
+    puntos_rutas_completo[i] <- NA
+  }
+}
+
+puntos_alumnos <- data.frame(apellidos, puntos_limpio, puntos_rutas_completo, puntos_texto)
 ```
 
