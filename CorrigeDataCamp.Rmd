@@ -121,5 +121,8 @@ write.xlsx(puntos_alumnos, file = "NotasRIntermedio.xlsx")
 
 ```{r}
 evalua_df2 <- read_excel('AlumnosTD25_26.xlsx')
+df_final <- merge(evalua_df2, puntos_alumnos, by.x = "Apellido(s)", by.y = "apellidos", all.x = TRUE)
+
+write.xlsx(df_final, file = "AlumnosNotas.xlsx")
 ```
 
