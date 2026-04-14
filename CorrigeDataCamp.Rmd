@@ -39,6 +39,14 @@ puntos <- sapply(puntos_rutas, function(x) (readLines(x, warn = FALSE)))
 
 ¿Todas las entregas usaron como nombre del fichero de puntos el indicado; puntos.txt ?
 
+
+Viendo el número total de alumnos y comparándolo con el total de ficheros "puntos.txt" encontrados podemos comprobar que no todos los alumnos han entregado el fichero con el nombre correcto.
+```{r}
+cat("Total de archivos 'puntos.txt' encontrados:", length(puntos),
+    "\nTotal de alumnos detectados:", length(apellidos))
+```
+
+
 ¿Cuántas variantes hay ?
 
 ¿Todas las entregas contienen el fichero de puntos y el justificante de realización del curso ?
