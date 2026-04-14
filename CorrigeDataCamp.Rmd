@@ -111,17 +111,17 @@ puntos_texto <- lapply(puntos_rutas_completo, function(x) {
 
 
 nombres = c("apellidos", "puntos", "NomFile", "Puntos")
-puntos_alumnos <- data.frame(apellidos, puntos_limpio, puntos_rutas_completo, puntos_texto) %>% arrange(apellidos)
-colnames(puntos_alumnos) <- nombres
+evalua_df <- data.frame(apellidos, puntos_limpio, puntos_rutas_completo, puntos_texto) %>% arrange(apellidos)
+colnames(evalua_df) <- nombres
 
-write.xlsx(puntos_alumnos, file = "NotasRIntermedio.xlsx")
+write.xlsx(evalua_df, file = "NotasRIntermedio.xlsx")
 ```
 
 #Trabajo con el fichero AlumnosTD25_26.xlsx
 
 ```{r}
 evalua_df2 <- read_excel('AlumnosTD25_26.xlsx')
-df_final <- merge(evalua_df2, puntos_alumnos, by.x = "Apellido(s)", by.y = "apellidos", all.x = TRUE)
+df_final <- merge(evalua_df2, evalua_df, by.x = "Apellido(s)", by.y = "apellidos", all.x = TRUE)
 
 write.xlsx(df_final, file = "AlumnosNotas.xlsx")
 ```
