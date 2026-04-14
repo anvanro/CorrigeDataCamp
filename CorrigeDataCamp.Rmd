@@ -77,8 +77,6 @@ cat("Todas las carpetas tienen dos archivos?", ifelse(todos_tienen_dos, "SÍ", "
 #Creacion del data frame
 
 ```{r}
-# modificamos los datos guardados en puntos para valores no numericos devolver NA
-puntos_limpio <- lapply(puntos, function(x) {as.numeric(x)}) %>% unlist()
 
 # creamos una variable para almacenar las rutas de los achivos de puntuacion donde si falta el archivo rellenamos con NA
 puntos_rutas_completo <- character(64) 
@@ -90,6 +88,18 @@ for (i in 1:64) {
     puntos_rutas_completo[i] <- NA
   }
 }
+
+# modificamos los datos guardados en puntos para valores no numericos devolver NA
+puntos <- lapply(puntos_rutas_completo, function(x) if (file.exists(x)) {
+    return(readLines(x, warn = FALSE))
+  } else {
+    return(NA)
+  })
+puntos_limpio <- lapply(puntos, function(x) if (is.na(x[1])) {
+    return(NA)
+  } else {
+    x_limpio <- iconv(x, from = "", to = "ASCII", sub = "")
+    valores <- as.numeric(x_limpio)[1]}) %>% unlist()
 
 # puntos como cadena de texto
 puntos_texto <- lapply(puntos_rutas_completo, function(x) {
