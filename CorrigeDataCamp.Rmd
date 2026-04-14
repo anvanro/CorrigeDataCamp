@@ -47,6 +47,15 @@ cat("Total de archivos 'puntos.txt' encontrados:", length(puntos),
 ```
 
 
-¿Cuántas variantes hay ?
+¿Cuántas variantes hay?
+
+Para encontrar todas las posibles variantes del los nombres de los archivos vamos a buscar todos los nombres de los archivos en las carpetas individuales de los estudiantes y filtramos por valores distintos para contar el total.
+```{r}
+# extraemos solo el nombre final del archivo de todas las rutas encontradas y filtramos las unicas
+variantes_puntos <- list.files("Alumnos/.", full.names = FALSE, recursive = TRUE) %>% basename() %>% unique() %>% length()
+
+cat("Total de variantes de nombres de los archivos de los estudiantes:", variantes_puntos)
+```
+
 
 ¿Todas las entregas contienen el fichero de puntos y el justificante de realización del curso ?
