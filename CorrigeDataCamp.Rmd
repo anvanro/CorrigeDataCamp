@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(lubridate)
 library(knitr)
+library(openxlsx)
 ```
 
 **Trabajo Corrección automática de tareas de Datacamp**
@@ -97,5 +98,7 @@ for (i in 1:64) {
 nombres = c("apellidos", "puntos", "NomFile", "Puntos")
 puntos_alumnos <- data.frame(apellidos, puntos_limpio, puntos_rutas_completo, puntos_texto)
 colnames(puntos_alumnos) <- nombres
+
+write.xlsx(puntos_alumnos, file = "NotasRIntermedio.xlsx")
 ```
 
