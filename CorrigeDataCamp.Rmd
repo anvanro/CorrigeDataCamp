@@ -117,3 +117,9 @@ colnames(puntos_alumnos) <- nombres
 write.xlsx(puntos_alumnos, file = "NotasRIntermedio.xlsx")
 ```
 
+#Trabajo con el fichero AlumnosTD25_26.xlsx
+
+```{r}
+evalua_df2 <- read_excel('AlumnosTD25_26.xlsx')
+```
+
