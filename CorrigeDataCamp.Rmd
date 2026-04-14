@@ -13,6 +13,7 @@ library(tidyverse)
 library(lubridate)
 library(knitr)
 library(openxlsx)
+library(readxl)
 ```
 
 **Trabajo Corrección automática de tareas de Datacamp**
