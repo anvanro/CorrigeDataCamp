@@ -80,13 +80,10 @@ cat("Todas las carpetas tienen dos archivos?", ifelse(todos_tienen_dos, "SÍ", "
 # modificamos los datos guardados en puntos para valores no numericos devolver NA
 puntos_limpio <- lapply(puntos, function(x) {as.numeric(x)}) %>% unlist()
 
-# puntos como cadena de texto
-puntos_texto <- lapply(puntos, function(x) {as.character(x)}) %>% unlist()
-
 # creamos una variable para almacenar las rutas de los achivos de puntuacion donde si falta el archivo rellenamos con NA
 puntos_rutas_completo <- character(64) 
 for (i in 1:64) {
-  puntos_rutas <- list.files(archivos_alumno[i], pattern = "*.txt", full.names = TRUE)
+  puntos_rutas <- list.files(archivos_alumno[i], pattern = c("*puntos*","*.txt"), full.names = TRUE)
   if (length(puntos_rutas) > 0) {
     puntos_rutas_completo[i] <- puntos_rutas
   } else {
@@ -94,9 +91,16 @@ for (i in 1:64) {
   }
 }
 
+# puntos como cadena de texto
+puntos_texto <- lapply(puntos_rutas_completo, function(x) {
+  if (file.exists(x)) {
+    contenido <- readLines(x, warn = FALSE)
+    return(paste(contenido, collapse = " "))
+  } else {return(NA)}}) %>% unlist()
+
 
 nombres = c("apellidos", "puntos", "NomFile", "Puntos")
-puntos_alumnos <- data.frame(apellidos, puntos_limpio, puntos_rutas_completo, puntos_texto)
+puntos_alumnos <- data.frame(apellidos, puntos_limpio, puntos_rutas_completo, puntos_texto) %>% arrange(apellidos)
 colnames(puntos_alumnos) <- nombres
 
 write.xlsx(puntos_alumnos, file = "NotasRIntermedio.xlsx")
